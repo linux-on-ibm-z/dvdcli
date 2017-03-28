@@ -274,8 +274,8 @@ build-darwin-amd64_:
 rebuild-darwin-amd64: _pre-make _clean _build-darwin-amd64 _post-make
 rebuild-all-darwin-amd64: _pre-make _clean-all _build-darwin-amd64 _post-make
 
-build-linux-s390x: _pre-make _build-linux-386 _post-make
-_build-linux-s390x: _deps _fmt build-linux-386_
+build-linux-s390x: _pre-make _build-linux-s390x _post-make
+_build-linux-s390x: _deps _fmt build-linux-s90x_
 build-linux-s390x_:
 	@if [ "" != "$(findstring Linux-s390x,$(BUILD_PLATFORMS))" ]; then \
 		env _GOOS=linux _GOARCH=s390x make build_; \
@@ -421,7 +421,7 @@ deb-linux-s390x:
 		env _GOOS=linux _GOARCH=s390x make deb; \
 	fi
 
-deb-all: deb-linux-amd64
+deb-all: deb-linux-amd64 deb-linux-s390x
 
 test: _install
 	@echo "target: test"
